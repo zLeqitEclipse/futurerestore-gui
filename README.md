@@ -1,7 +1,18 @@
-Futurerestore GUI
 
-This Program requires the futurerestore.exe (https://github.com/s0uthwest/futurerestore)
+## Futurerestore GUI
 
-This is my first public Project ever, so do not expect much. Also i am just 14yrs old.
+This is my first public Project ever, so don't expect much.
 
-This Program is for peapol who wants to downgrade their phones, but are not familiar with the Command Line Tool.
+This Project requires the `futurerestore.exe`
+
+This Project is for peapol who are not familiar with the Command Line, or peapol who just want to take a look at the Code.
+
+## **Installation**
+
+1. Put the `futurerestore_gui.exe` in the same directory as the `futurerestore.exe`.
+2. Open the `futurerestore_gui.exe` and continue on!
+
+
+## Tutorial
+
+Comming soon..
