@@ -3,7 +3,7 @@
 
 This is my first public Project ever, so don't expect much.
 
-This Project requires the `futurerestore.exe`
+This Project requires the `futurerestore.exe` (https://github.com/s0uthwest/futurerestore)
 
 This Project is for peapol who are not familiar with the Command Line, or peapol who just want to take a look at the Code.
 

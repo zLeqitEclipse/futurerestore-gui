@@ -61,6 +61,11 @@ namespace futurerestore_gui
             p.OutputDataReceived += new DataReceivedEventHandler((s, e) =>
             {
                 Console.WriteLine(e.Data);
+                this.Dispatcher.Invoke(() =>
+                {
+                    outputLogBox.AppendText("\r\n" + e.Data);
+                    outputLogBox.ScrollToEnd();
+                });
             });
 
             p.BeginOutputReadLine();
@@ -86,44 +91,51 @@ namespace futurerestore_gui
 
             if(pathBMbox.Text != "" && pathIPSWbox.Text != "" & pathSEPbox.Text != "" && pathSHSH2box.Text != "")
             {
-                if(pathBBbox.Text != "" || noBBcheckBox.IsChecked == true)
+                if(pathBBbox.Text != "" || noBBcheckBox.IsChecked == true || latestBBbox.IsChecked == true)
                 {
-                    String cmd = "";
-
-                    cmd += "-t \"" + pathSHSH2box.Text + "\" ";
-                    cmd += "-p \"" + pathBMbox.Text + "\" ";
-                    cmd += "-m \"" + pathBMbox.Text + "\" ";
-
-                    if (noBBcheckBox.IsChecked == true)
+                    if(pathSEPbox.Text != "" || latestSEPbox.IsChecked == true)
                     {
-                        cmd += "--no-baseband ";
-                    }
-                    else if (latestBBbox.IsChecked == true)
-                    {
-                        cmd += "--latest-baseband ";
+                        String cmd = "";
+
+                        cmd += "-t \"" + pathSHSH2box.Text + "\" ";
+                        cmd += "-p \"" + pathBMbox.Text + "\" ";
+                        cmd += "-m \"" + pathBMbox.Text + "\" ";
+
+                        if (noBBcheckBox.IsChecked == true)
+                        {
+                            cmd += "--no-baseband ";
+                        }
+                        else if (latestBBbox.IsChecked == true)
+                        {
+                            cmd += "--latest-baseband ";
+                        }
+                        else
+                        {
+                            cmd += "-b \"" + pathBBbox.Text + "\" ";
+                        }
+
+                        if (latestSEPbox.IsChecked == true)
+                        {
+                            cmd += "--latest-sep ";
+                        }
+                        else
+                        {
+                            cmd += "-s \"" + pathSEPbox.Text + "\" ";
+                        }
+
+                        if (updateCheckBox.IsChecked == true)
+                        {
+                            cmd += "--update ";
+                        }
+
+                        cmd += "\"" + pathIPSWbox.Text + "\"";
+
+                        runCommand(cmd);
                     }
                     else
                     {
-                        cmd += "-b \"" + pathBBbox.Text + "\" ";
+                        MessageBox.Show("Please make sure that you've filled any TextBox.", "Could not Restore / Update", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
-                    if (latestSEPbox.IsChecked == true)
-                    {
-                        cmd += "--latest-sep ";
-                    }
-                    else
-                    {
-                        cmd += "-s \"" + pathSEPbox.Text + "\" ";
-                    }
-
-                    if (updateCheckBox.IsChecked == true)
-                    {
-                        cmd += "--update ";
-                    }
-
-                    cmd += "\"" + pathIPSWbox.Text + "\"";
-
-                    runCommand(cmd);
                 }
                 else
                 {
